@@ -29,3 +29,7 @@ export function formatPercent(value, decimals = 2){
     const sign = value > 0 ? '+' : '';
     return `${sign}${value.toFixed(decimals)}%`
 }
+
+export function formatRate(value){
+    return formatAmount(value, {decimals: value < 10 ? 4 : 2})
+}

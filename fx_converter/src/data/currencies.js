@@ -9,6 +9,8 @@ export const CURRENCIES = [
   { code: 'INR', name: 'Indian Rupee', flag: '/flags/in.svg', rateToUSD: 94.91 },
   { code: 'CNY', name: 'Chinese Yuan', flag: '/flags/cn.svg', rateToUSD: 7.21 },
   { code: 'BDT', name: 'Bangladeshi Taka', flag: '/flags/bd.svg', rateToUSD: 122.92 },
+  { code: 'NZD', name: 'New Zealand Dollar', flag: '/flags/nz.svg', rateToUSD: 1.6949 },
+  { code: 'TRY', name: 'Turkish Lira', flag: '/flags/tr.svg', rateToUSD: 38.642 },
 ]
 
 export const CURRENCY_MAP = Object.fromEntries(

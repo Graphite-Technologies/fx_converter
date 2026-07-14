@@ -13,6 +13,9 @@ import RateChart from './components/RateChart'
 import { useHistoricalRates } from './hooks/useHistoricalRate'
 import { useCurrencyConverter } from './hooks/useCurrencyConverter'
 import CompareTab from './components/CompareTab'
+import { useFavoritePairs } from './hooks/useFavoritePairs'
+import FavoriteTab from './components/FavoriteTab'
+import { FAVORITE_PAIRS } from './data/favoritePairsData'
 
 const TABS = [
   {id: 'history', label: 'HISTORY'},
@@ -30,10 +33,17 @@ export default function App() {
   const converter = useCurrencyConverter();
 
   const {data, stats, isLoading} = useHistoricalRates(range);
+  const  favoritePairs = useFavoritePairs();
   
   function handleLogConversion(entry){
     setConversionLog( (log) => [entry, ...log]);
   }
+
+   const tabsWithCounts = TABS.map((tab) => {
+    if (tab.id === 'favorites') return { ...tab, count: favoritePairs.pairs.length };
+    // if (tab.id === 'log') return { ...tab, count: log.entries.length };
+    return tab;
+  });
 
   return (
     <div className="app">
@@ -71,7 +81,12 @@ export default function App() {
                 excludeCurrency={converter.receiveCurrency}
               />
             )}
-            {activeTab !== 'history' && activeTab !== 'compare' && (
+
+            {activeTab === 'favorites' && (
+              <FavoriteTab pairs={favoritePairs.pairs} onRemove={favoritePairs.remove}/>
+            )}
+
+            {activeTab !== 'history' && activeTab !== 'compare' && activeTab !== 'favorites' && (
                <section className="placeholder-section">
                 <p>
                   {TABS.find((t) => t.id === activeTab)?.label} view — not part of this
