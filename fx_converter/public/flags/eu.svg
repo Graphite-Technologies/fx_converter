@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24">
+  <defs>
+    <clipPath id="eu-clip"><rect width="36" height="24" rx="3"/></clipPath>
+  </defs>
+  <g clip-path="url(#eu-clip)">
+    <rect width="36" height="24" fill="#003399"/>
+    <g fill="#ffcc00">
+      <circle cx="18" cy="4.5" r="0.9"/>
+      <circle cx="23.4" cy="6.1" r="0.9"/>
+      <circle cx="27" cy="10.5" r="0.9"/>
+      <circle cx="27" cy="15.5" r="0.9"/>
+      <circle cx="23.4" cy="19.9" r="0.9"/>
+      <circle cx="18" cy="21.5" r="0.9"/>
+      <circle cx="12.6" cy="19.9" r="0.9"/>
+      <circle cx="9" cy="15.5" r="0.9"/>
+      <circle cx="9" cy="10.5" r="0.9"/>
+      <circle cx="12.6" cy="6.1" r="0.9"/>
+    </g>
+  </g>
+</svg>

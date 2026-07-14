@@ -2,12 +2,12 @@ import {useState} from 'react'
 import CurrencyInput from './CurrencyInput.jsx'
 import IconButton from './IconButton.jsx'
 import { formatAmount } from '../utils/format.js'
-import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
+// import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 
-export default function ConversionPanel({
+export default function ConversionPanel({ converter,
     onLogConversion
 }){
-    const converter = useCurrencyConverter()
+    // const converter = useCurrencyConverter()
     const [swapVersion, setSwapVersion] = useState(0);
     
     function handleSwap(){

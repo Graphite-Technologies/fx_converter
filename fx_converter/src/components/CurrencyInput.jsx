@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import {CURRENCIES} from "../data/currencies.js"
+import {CURRENCIES, CURRENCY_MAP} from "../data/currencies.js"
 import { formatAmount, parseAmount } from "../utils/format.js";
+import FlagIcon from "./FlagIcon.jsx";
 
 function CurrencySelect({value, onChange, excluding}){
     const options = CURRENCIES.filter((c)=> c.code != excluding);
    return(
     <div className="currency-select">
-            <span aria-hidden="true">{CURRENCIES.find((c)=>
-                c.code === value)?.flag}</span>
+            <FlagIcon src={CURRENCY_MAP[value]?.flag}/>
             <select
                 value = {value}
                 onChange={(e) => onChange(e.target.value)}

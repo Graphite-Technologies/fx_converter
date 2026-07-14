@@ -11,6 +11,8 @@ import StatsRow from './components/StatsRow'
 import RangeSelector from './components/RangeSelector'
 import RateChart from './components/RateChart'
 import { useHistoricalRates } from './hooks/useHistoricalRate'
+import { useCurrencyConverter } from './hooks/useCurrencyConverter'
+import CompareTab from './components/CompareTab'
 
 const TABS = [
   {id: 'history', label: 'HISTORY'},
@@ -24,6 +26,8 @@ export default function App() {
 
   const [range, setRange] = useState('1M');
   const [conversionLog, setConversionLog] = useState([]);
+
+  const converter = useCurrencyConverter();
 
   const {data, stats, isLoading} = useHistoricalRates(range);
   
@@ -43,7 +47,7 @@ export default function App() {
         </header>
         <LiveTicker pairs={TICKER_PAIRS}/>
         <main className='app__main'>
-          <ConversionPanel onLogConversion={handleLogConversion} />
+          <ConversionPanel converter={converter} onLogConversion={handleLogConversion} />
             <Tabs tabs={TABS} activeId={activeTab} onChange={setActiveTab}/>
             {activeTab === "history" && (
               <section className='history-section' aria-label='Rate history'>
@@ -60,7 +64,14 @@ export default function App() {
               </section>
             )}
 
-            {activeTab !== 'history' && (
+            {activeTab === 'compare' && (
+              <CompareTab
+                baseAmount={converter.sendAmount}
+                baseCurrency={converter.sendCurrency}
+                excludeCurrency={converter.receiveCurrency}
+              />
+            )}
+            {activeTab !== 'history' && activeTab !== 'compare' && (
                <section className="placeholder-section">
                 <p>
                   {TABS.find((t) => t.id === activeTab)?.label} view — not part of this
